@@ -66,6 +66,10 @@ const primaryColor = palette.primary
 const surfaceColor = palette.surfaceMuted
 ```
 
+## 示例目录
+
+完整最小示例见 `example/SwiftUIThemeUsage.ets`。该示例演示如何读取色板、毛玻璃 material 和链式配置对象，适合作为业务页面接入 `theme` 的起点。
+
 ## 导出能力
 
 | API | 说明 |
