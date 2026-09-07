@@ -1,9 +1,7 @@
 export enum SwiftUITone {
   GlassBlack = 0,
-  CareGreen = 1,
-  WarmAmber = 2,
-  ClinicalBlue = 3,
-  FreshMint = 4
+  PureWhite = 1,
+  SystemGray = 2
 }
 
 export enum SwiftUIHeaderStyle {
@@ -52,6 +50,119 @@ export interface SwiftUIRowItem {
   icon?: ResourceStr
 }
 
+export class SwiftUIComponentConfig {
+  tone?: SwiftUITone
+  width?: Length
+  height?: Length
+  color?: ResourceColor
+  fillColor?: ResourceColor
+  tintColor?: ResourceColor
+  borderColor?: ResourceColor
+  borderWidth?: number
+  cornerRadius?: number
+  shadowColor?: ResourceColor
+  shadowRadius?: number
+  contentPadding?: number
+  spacing?: number
+  titleFontSize?: number
+  subtitleFontSize?: number
+  textFontSize?: number
+  iconSize?: Length
+  accentColor?: ResourceColor
+
+  withTone(tone: SwiftUITone): SwiftUIComponentConfig {
+    this.tone = tone
+    return this
+  }
+
+  withWidth(width: Length): SwiftUIComponentConfig {
+    this.width = width
+    return this
+  }
+
+  withHeight(height: Length): SwiftUIComponentConfig {
+    this.height = height
+    return this
+  }
+
+  withSize(width: Length, height: Length): SwiftUIComponentConfig {
+    this.width = width
+    this.height = height
+    return this
+  }
+
+  withColor(color: ResourceColor): SwiftUIComponentConfig {
+    this.color = color
+    return this
+  }
+
+  withFillColor(fillColor: ResourceColor): SwiftUIComponentConfig {
+    this.fillColor = fillColor
+    return this
+  }
+
+  withTintColor(tintColor: ResourceColor): SwiftUIComponentConfig {
+    this.tintColor = tintColor
+    return this
+  }
+
+  withBorder(color: ResourceColor, width: number = 1): SwiftUIComponentConfig {
+    this.borderColor = color
+    this.borderWidth = width
+    return this
+  }
+
+  withRadius(cornerRadius: number): SwiftUIComponentConfig {
+    this.cornerRadius = cornerRadius
+    return this
+  }
+
+  withShadow(color: ResourceColor, radius: number): SwiftUIComponentConfig {
+    this.shadowColor = color
+    this.shadowRadius = radius
+    return this
+  }
+
+  withPadding(contentPadding: number): SwiftUIComponentConfig {
+    this.contentPadding = contentPadding
+    return this
+  }
+
+  withSpacing(spacing: number): SwiftUIComponentConfig {
+    this.spacing = spacing
+    return this
+  }
+
+  withTitleFontSize(titleFontSize: number): SwiftUIComponentConfig {
+    this.titleFontSize = titleFontSize
+    return this
+  }
+
+  withSubtitleFontSize(subtitleFontSize: number): SwiftUIComponentConfig {
+    this.subtitleFontSize = subtitleFontSize
+    return this
+  }
+
+  withTextFontSize(textFontSize: number): SwiftUIComponentConfig {
+    this.textFontSize = textFontSize
+    return this
+  }
+
+  withIconSize(iconSize: Length): SwiftUIComponentConfig {
+    this.iconSize = iconSize
+    return this
+  }
+
+  withAccentColor(accentColor: ResourceColor): SwiftUIComponentConfig {
+    this.accentColor = accentColor
+    return this
+  }
+}
+
+export function swiftUIConfig(): SwiftUIComponentConfig {
+  return new SwiftUIComponentConfig()
+}
+
 export const SWIFT_UI_SPACING_EXTRA_SMALL: number = 4
 export const SWIFT_UI_SPACING_SMALL: number = 8
 export const SWIFT_UI_SPACING_MEDIUM: number = 12
@@ -96,15 +207,11 @@ export function getSwiftUIToneTitle(tone: SwiftUITone): ResourceStr {
   switch (tone) {
     case SwiftUITone.GlassBlack:
       return 'Glass Black'
-    case SwiftUITone.WarmAmber:
-      return 'Warm Amber'
-    case SwiftUITone.ClinicalBlue:
-      return 'Clinical Blue'
-    case SwiftUITone.FreshMint:
-      return 'Fresh Mint'
-    case SwiftUITone.CareGreen:
+    case SwiftUITone.PureWhite:
+      return 'Pure White'
+    case SwiftUITone.SystemGray:
     default:
-      return 'Care Green'
+      return 'System Gray'
   }
 }
 
@@ -112,15 +219,11 @@ export function getSwiftUIToneSubtitle(tone: SwiftUITone): ResourceStr {
   switch (tone) {
     case SwiftUITone.GlassBlack:
       return 'Default black glass'
-    case SwiftUITone.WarmAmber:
-      return 'Warmer family tone'
-    case SwiftUITone.ClinicalBlue:
-      return 'Cleaner clinic tone'
-    case SwiftUITone.FreshMint:
-      return 'Fresh family space'
-    case SwiftUITone.CareGreen:
+    case SwiftUITone.PureWhite:
+      return 'Clean white glass'
+    case SwiftUITone.SystemGray:
     default:
-      return 'Default calm care'
+      return 'Neutral gray glass'
   }
 }
 
@@ -140,62 +243,34 @@ export function getSwiftUIPalette(tone: SwiftUITone = SwiftUITone.GlassBlack): S
         border: '#4A4A4A',
         divider: '#2E2E2E'
       }
-    case SwiftUITone.WarmAmber:
+    case SwiftUITone.PureWhite:
       return {
-        background: '#FAF4EA',
-        backgroundElevated: '#FFFBEF',
-        surface: '#FFFFFE',
-        surfaceMuted: '#DEF2DF',
-        surfaceBlue: '#E3F2FD',
-        surfaceAmber: '#FFE6B3',
-        primary: '#1D6E63',
-        primaryDark: '#153A35',
-        accent: '#C26F42',
-        border: '#D1BAA0',
-        divider: '#E3D4BF'
-      }
-    case SwiftUITone.ClinicalBlue:
-      return {
-        background: '#EDF5FB',
-        backgroundElevated: '#F6FBFF',
-        surface: '#FEFFFF',
-        surfaceMuted: '#D8F4E9',
-        surfaceBlue: '#D2EAFF',
-        surfaceAmber: '#FFECBE',
-        primary: '#165A8F',
-        primaryDark: '#0D2842',
-        accent: '#0F8173',
-        border: '#A6C7E3',
-        divider: '#CBDDED'
-      }
-    case SwiftUITone.FreshMint:
-      return {
-        background: '#EEF9F5',
-        backgroundElevated: '#F7FDFB',
+        background: '#F8F8F8',
+        backgroundElevated: '#FFFFFF',
         surface: '#FFFFFF',
-        surfaceMuted: '#D1F6E6',
-        surfaceBlue: '#DBF0FE',
-        surfaceAmber: '#FFEDC2',
-        primary: '#096B5F',
-        primaryDark: '#083633',
-        accent: '#3CA5AF',
-        border: '#A9CFC9',
-        divider: '#CFE4E0'
+        surfaceMuted: '#EFEFEF',
+        surfaceBlue: '#E7E7E7',
+        surfaceAmber: '#DDDDDD',
+        primary: '#111111',
+        primaryDark: '#000000',
+        accent: '#4D4D4D',
+        border: '#D0D0D0',
+        divider: '#E5E5E5'
       }
-    case SwiftUITone.CareGreen:
+    case SwiftUITone.SystemGray:
     default:
       return {
-        background: '#EFF7F5',
-        backgroundElevated: '#F8FCFA',
-        surface: '#FFFFFF',
-        surfaceMuted: '#D9F6EA',
-        surfaceBlue: '#E2F2FE',
-        surfaceAmber: '#FFEFCA',
-        primary: '#0B7063',
-        primaryDark: '#0A3834',
-        accent: '#40A4B3',
-        border: '#B0CFCB',
-        divider: '#D3E4E1'
+        background: '#1C1C1E',
+        backgroundElevated: '#2C2C2E',
+        surface: '#303033',
+        surfaceMuted: '#3A3A3C',
+        surfaceBlue: '#4A4A4D',
+        surfaceAmber: '#5A5A5D',
+        primary: '#F2F2F7',
+        primaryDark: '#111111',
+        accent: '#B8B8BD',
+        border: '#5F5F63',
+        divider: '#3F3F43'
       }
   }
 }

@@ -70,10 +70,12 @@ const surfaceColor = palette.surfaceMuted
 
 | API | 说明 |
 | --- | --- |
-| `SwiftUITone` | `GlassBlack` 默认黑色毛玻璃，以及 `CareGreen`、`WarmAmber`、`ClinicalBlue`、`FreshMint` 可选色调 |
+| `SwiftUITone` | 三个颜色枚举：`GlassBlack` 黑色毛玻璃、`PureWhite` 白色毛玻璃、`SystemGray` 灰色毛玻璃 |
 | `SwiftUIHeaderStyle` | `Neutral`、`Care`、`Tasks`、`Records`、`Family` 头图风格 |
 | `SwiftUIPalette` | 页面、文本、主色、强调色和表面色 |
 | `SwiftUIGlassMaterial` | 毛玻璃填充色、边框色、叠色、高光和阴影 |
+| `SwiftUIComponentConfig` | SwiftUI modifier 风格配置对象 |
+| `swiftUIConfig` | 创建链式配置对象，支持 `withTone()`、`withWidth()`、`withHeight()`、`withRadius()`、`withFillColor()`、`withBorder()`、`withShadow()`、`withPadding()` 等方法 |
 | `SwiftUIMetricItem` | 指标组件数据结构 |
 | `SwiftUIRowItem` | 列表行组件数据结构 |
 | `getSwiftUIPalette` | 获取指定色调的完整色板 |
@@ -85,4 +87,4 @@ const surfaceColor = palette.surfaceMuted
 ## 设计说明
 
 - 默认 token 偏向 like-ios 黑色优先的纯色毛玻璃风格。
-- 业务方如果要完全接入自己的设计系统，可以直接跳过 token 默认值，在各 UI 组件中传入自定义颜色和尺寸。
+- 业务方如果要完全接入自己的设计系统，可以直接跳过 token 默认值，在各 UI 组件中传入自定义颜色和尺寸，或通过 `swiftUIConfig()` 复用一组链式配置。

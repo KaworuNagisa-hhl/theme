@@ -6,6 +6,7 @@ import {
   getSwiftUIPalette,
   getSwiftUIToneSubtitle,
   getSwiftUIToneTitle,
+  swiftUIConfig,
   swiftUIColorWithOpacity,
   SwiftUITone,
   SWIFT_UI_GLASS_FILL,
@@ -27,10 +28,9 @@ export default function localUnitTest() {
 
     it('builds_palette_for_every_tone', 0, () => {
       const tones: SwiftUITone[] = [
-        SwiftUITone.CareGreen,
-        SwiftUITone.WarmAmber,
-        SwiftUITone.ClinicalBlue,
-        SwiftUITone.FreshMint
+        SwiftUITone.GlassBlack,
+        SwiftUITone.PureWhite,
+        SwiftUITone.SystemGray
       ]
       tones.forEach((tone: SwiftUITone) => {
         expect(getSwiftUIToneTitle(tone).toString().length > 0).assertTrue()
@@ -41,11 +41,31 @@ export default function localUnitTest() {
     })
 
     it('creates_glass_material_for_every_tone', 0, () => {
-      const material = getSwiftUIGlassMaterial(SwiftUITone.CareGreen)
+      const material = getSwiftUIGlassMaterial(SwiftUITone.PureWhite)
       expect(material.blurRadius > 0).assertTrue()
       expect(material.fill.toString()).assertContain('#')
-      expect(getSwiftUIGlassBorderColor(SwiftUITone.CareGreen).toString()).assertContain('#')
-      expect(getSwiftUIGlassTint(SwiftUITone.CareGreen).toString()).assertContain('#')
+      expect(getSwiftUIGlassBorderColor(SwiftUITone.PureWhite).toString()).assertContain('#')
+      expect(getSwiftUIGlassTint(SwiftUITone.PureWhite).toString()).assertContain('#')
+    })
+
+    it('builds_swiftui_fluent_component_config', 0, () => {
+      const config = swiftUIConfig()
+        .withTone(SwiftUITone.SystemGray)
+        .withWidth('92%')
+        .withHeight(88)
+        .withRadius(8)
+        .withColor('#F8F8F8')
+        .withFillColor('#E6111111')
+        .withTintColor('#22FFFFFF')
+        .withBorder('#33FFFFFF', 1)
+        .withShadow('#33000000', 16)
+        .withPadding(12)
+        .withSpacing(8)
+
+      expect(config.tone).assertEqual(SwiftUITone.SystemGray)
+      expect(config.cornerRadius).assertEqual(8)
+      expect(config.contentPadding).assertEqual(12)
+      expect(config.spacing).assertEqual(8)
     })
 
     it('converts_hex_color_to_alpha_hex', 0, () => {
