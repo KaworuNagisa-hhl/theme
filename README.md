@@ -14,15 +14,6 @@
 ohpm install theme
 ```
 
-本地源码依赖：
-
-```json5
-{
-  "dependencies": {
-    "theme": "file:../theme"
-  }
-}
-```
 
 ## 正常使用样式
 
