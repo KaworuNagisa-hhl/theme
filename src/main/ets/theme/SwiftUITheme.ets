@@ -12,6 +12,16 @@ export enum SwiftUIHeaderStyle {
   Family = 4
 }
 
+export enum SwiftUIBrandStyle {
+  Graphite = 0,
+  Mist = 1,
+  Ocean = 2,
+  Mint = 3,
+  Amber = 4,
+  Rose = 5,
+  Lavender = 6
+}
+
 export interface SwiftUIPalette {
   background: ResourceColor
   backgroundElevated: ResourceColor
@@ -34,6 +44,16 @@ export interface SwiftUIGlassMaterial {
   border: ResourceColor
   shadow: ResourceColor
   blurRadius: number
+}
+
+export interface SwiftUIBrandPreset {
+  tone: SwiftUITone
+  fillColor: ResourceColor
+  tintColor: ResourceColor
+  color: ResourceColor
+  accentColor: ResourceColor
+  borderColor: ResourceColor
+  shadowColor: ResourceColor
 }
 
 export interface SwiftUIMetricItem {
@@ -225,6 +245,134 @@ export function getSwiftUIToneSubtitle(tone: SwiftUITone): ResourceStr {
     default:
       return 'Neutral gray glass'
   }
+}
+
+export function getSwiftUIBrandStyleTitle(style: SwiftUIBrandStyle): ResourceStr {
+  switch (style) {
+    case SwiftUIBrandStyle.Mist:
+      return 'Mist'
+    case SwiftUIBrandStyle.Ocean:
+      return 'Ocean'
+    case SwiftUIBrandStyle.Mint:
+      return 'Mint'
+    case SwiftUIBrandStyle.Amber:
+      return 'Amber'
+    case SwiftUIBrandStyle.Rose:
+      return 'Rose'
+    case SwiftUIBrandStyle.Lavender:
+      return 'Lavender'
+    case SwiftUIBrandStyle.Graphite:
+    default:
+      return 'Graphite'
+  }
+}
+
+export function getSwiftUIBrandStyleSubtitle(style: SwiftUIBrandStyle): ResourceStr {
+  switch (style) {
+    case SwiftUIBrandStyle.Mist:
+      return 'Soft light glass'
+    case SwiftUIBrandStyle.Ocean:
+      return 'Blue operational'
+    case SwiftUIBrandStyle.Mint:
+      return 'Green success'
+    case SwiftUIBrandStyle.Amber:
+      return 'Warm reminder'
+    case SwiftUIBrandStyle.Rose:
+      return 'Red highlight'
+    case SwiftUIBrandStyle.Lavender:
+      return 'Purple identity'
+    case SwiftUIBrandStyle.Graphite:
+    default:
+      return 'Dark neutral'
+  }
+}
+
+export function getSwiftUIBrandPreset(style: SwiftUIBrandStyle = SwiftUIBrandStyle.Graphite): SwiftUIBrandPreset {
+  switch (style) {
+    case SwiftUIBrandStyle.Mist:
+      return {
+        tone: SwiftUITone.PureWhite,
+        fillColor: '#EEFFFFFF',
+        tintColor: '#2EE5E7EB',
+        color: '#111827',
+        accentColor: '#64748B',
+        borderColor: '#80CBD5E1',
+        shadowColor: '#1A111827'
+      }
+    case SwiftUIBrandStyle.Ocean:
+      return {
+        tone: SwiftUITone.SystemGray,
+        fillColor: '#E6111F2E',
+        tintColor: '#332563EB',
+        color: '#38BDF8',
+        accentColor: '#0EA5E9',
+        borderColor: '#6638BDF8',
+        shadowColor: '#241D4ED8'
+      }
+    case SwiftUIBrandStyle.Mint:
+      return {
+        tone: SwiftUITone.GlassBlack,
+        fillColor: '#E60E1F1A',
+        tintColor: '#3322C55E',
+        color: '#34D399',
+        accentColor: '#10B981',
+        borderColor: '#6634D399',
+        shadowColor: '#2410B981'
+      }
+    case SwiftUIBrandStyle.Amber:
+      return {
+        tone: SwiftUITone.SystemGray,
+        fillColor: '#E6241A0C',
+        tintColor: '#33F59E0B',
+        color: '#FBBF24',
+        accentColor: '#D97706',
+        borderColor: '#66FBBF24',
+        shadowColor: '#24D97706'
+      }
+    case SwiftUIBrandStyle.Rose:
+      return {
+        tone: SwiftUITone.GlassBlack,
+        fillColor: '#E6241018',
+        tintColor: '#33F43F5E',
+        color: '#FB7185',
+        accentColor: '#E11D48',
+        borderColor: '#66FB7185',
+        shadowColor: '#24E11D48'
+      }
+    case SwiftUIBrandStyle.Lavender:
+      return {
+        tone: SwiftUITone.SystemGray,
+        fillColor: '#E61C1630',
+        tintColor: '#33A78BFA',
+        color: '#C4B5FD',
+        accentColor: '#8B5CF6',
+        borderColor: '#66C4B5FD',
+        shadowColor: '#248B5CF6'
+      }
+    case SwiftUIBrandStyle.Graphite:
+    default:
+      return {
+        tone: SwiftUITone.GlassBlack,
+        fillColor: SWIFT_UI_GLASS_FILL_STRONG,
+        tintColor: '#33252525',
+        color: SWIFT_UI_TEXT_PRIMARY,
+        accentColor: '#CFCFCF',
+        borderColor: '#664A4A4A',
+        shadowColor: SWIFT_UI_SHADOW
+      }
+  }
+}
+
+export function swiftUIConfigForStyle(style: SwiftUIBrandStyle = SwiftUIBrandStyle.Graphite): SwiftUIComponentConfig {
+  const preset = getSwiftUIBrandPreset(style)
+  return swiftUIConfig()
+    .withTone(preset.tone)
+    .withFillColor(preset.fillColor)
+    .withTintColor(preset.tintColor)
+    .withColor(preset.color)
+    .withAccentColor(preset.accentColor)
+    .withBorder(preset.borderColor, 1.1)
+    .withShadow(preset.shadowColor, 18)
 }
 
 export function getSwiftUIPalette(tone: SwiftUITone = SwiftUITone.GlassBlack): SwiftUIPalette {
