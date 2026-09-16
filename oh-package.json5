@@ -9,16 +9,16 @@
   "license": "Apache-2.0",
   "repository": "https://github.com/KaworuNagisa-hhl/theme",
   "keywords": [
-    "OpenHarmony",
-    "HarmonyOS",
-    "ArkUI",
-    "like-ios",
-    "ios-like",
-    "kaworunagisa_hhl",
+    "openharmony",
+    "harmonyos",
+    "arkui",
+    "ui",
+    "component",
     "theme",
-    "token",
+    "tokens",
     "palette",
-    "semantic-color"
+    "color",
+    "style"
   ],
   "dependencies": {}
 }
