@@ -1,4 +1,4 @@
-import { getSwiftUIGlassMaterial, getSwiftUIPalette, swiftUIConfig, SwiftUITone } from 'theme'
+import { getSwiftUIGlassMaterial, getSwiftUIPalette, swiftUIConfig, SwiftUITone } from '@kaworunagisa_hhl/theme'
 
 @Component
 export struct SwiftUIThemeUsage {
