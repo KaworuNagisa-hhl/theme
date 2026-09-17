@@ -1,7 +1,7 @@
 {
   "modelVersion": "6.0.2",
-  "name": "@kaworunagisa_hhl/theme",
-  "version": "1.0.3",
+  "name": "theme",
+  "version": "1.0.4",
   "description": "OpenHarmony/HarmonyOS ArkUI like-ios 主题 token、色调、色板、间距、圆角、毛玻璃和语义色基础库。提供 homepage、example 示例目录与清晰的 README 使用说明。",
   "main": "Index.ets",
   "author": { "name": "KaworuNagisa-hhl", "url": "https://github.com/KaworuNagisa-hhl" },
